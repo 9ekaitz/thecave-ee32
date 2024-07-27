@@ -17,7 +17,7 @@ extern ETSAIA etsaia[ETSAI_KOPURUA + 1];
 
 TIROAK jaurtigai[30];
 
-extern PONG easteregg;
+
 extern ROL Ordenagailua;
 
 extern BOSSFIGHT faseak;
@@ -147,35 +147,8 @@ void KargatuIrudiak(PANTAILAK Pantaila, int BizirikDaudenEtsaiak[], int* Bizirik
 		RectEraikitzailea(&BOSS.DestSprite, 580, 400, 149, 128);
 		RectEraikitzailea(&BOSS.SrcSprite, 0, 0, 149, 128);
 		
-		break;
-	case AUKERATUMODUA:
-		pertsonaia.bizirik = SDL_FALSE;
-		BOSS.bizirik = SDL_FALSE;
-		Mix_Pause(-1);
+
 	
-		ImgKargatu(".\\media\\pong\\OnlineLocal.bmp", 0, 0, 0, 0);
-		break;
-	case AUKERATUZERBITZUA:
-		ImgKargatu(".\\media\\pong\\ServidorCliente.bmp", 0, 0, 0, 0);
-		break;
-		
-	case AUKERAZERBITZARIA:
-		ImgKargatu(".\\media\\pong\\Zerbitzaria.bmp", 0, 0, 0, 0);
-		aukera = ZERBITZARI;
-		break;
-
-	case AUKERABEZEROA:
-		ImgKargatu(".\\media\\pong\\Bezeroa.bmp", 0, 0, 0, 0);
-		aukera = BEZEROA;
-		break;
-
-	case MINIJOKOA:
-
-		ImgKargatu(".\\media\\pong\\FondoPong.bmp", 0, 0, 0, 0);
-		GuztiakHil();
-		easteregg.piztuta = SDL_TRUE;
-		easteregg.P1puntuazioa = 0;
-		easteregg.P2puntuazioa = 0;
 
 		switch (aukera)
 		{
@@ -384,13 +357,6 @@ void RenderPrestatu(ZENTZUA begira, int BizirikDaudenEtsaiak[], int BizirikKopur
 		{
 			SDL_RenderCopy(render, spriteak[pertsonaia.sprite].textura, &pertsonaia.SrcSprite, &pertsonaia.DestSprite);
 		}
-	}
-	if (easteregg.piztuta) //pong marraztu
-	{
-		SDL_SetRenderDrawColor(render, 255, 255, 255, 255);
-		SDL_RenderFillRect(render, &easteregg.pilota);
-		SDL_RenderFillRect(render, &easteregg.Player1);
-		SDL_RenderFillRect(render, &easteregg.Player2);
 	}
 }
 

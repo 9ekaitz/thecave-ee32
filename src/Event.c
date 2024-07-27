@@ -11,7 +11,6 @@ HITBOX hitbox;//
 
 extern PERTSONAIA pertsonaia;
 extern ETSAIA etsaia[ETSAI_KOPURUA + 1];
-extern PONG easteregg;
 extern TIROAK jaurtigai[30];
 
 
@@ -36,7 +35,7 @@ ROL Ordenagailua;
 void EbentuakKonprobatu(SDL_bool* Jokatzen, PANTAILAK* Pantaila, int* pAnimazioa, ZENTZUA* begira, int BizirikDaudenEtsaiak[], int BizirikKopurua)
 {	
 	SDL_bool enter = SDL_FALSE;
-	static char sekuentzia[16] = ""; //pong en sekuentzia gordetzen du.
+	
 
 	SAGUA klika;
 	SDL_Event ebentua;
@@ -143,25 +142,7 @@ void EbentuakKonprobatu(SDL_bool* Jokatzen, PANTAILAK* Pantaila, int* pAnimazioa
 				case SDL_SCANCODE_DOWN:
 					behera = SDL_FALSE;
 					break;
-				case SDL_SCANCODE_P:
-					if (*Pantaila != MENUA)
-					{
-						strcpy(sekuentzia, "P");
-						musica_Pong(PONG_PALA);
-					}
-					break;
-				case SDL_SCANCODE_O:
-					strcat(sekuentzia, "O");
-					musica_Pong(PONG_PARETA);
-					break;
-				case SDL_SCANCODE_N:
-					strcat(sekuentzia, "N");
-					musica_Pong(PONG_PALA);
-					break;
-				case SDL_SCANCODE_G:
-					strcat(sekuentzia, "G");
-					musica_Pong(PONG_IRABAZI);
-					break;
+				
 				case SDL_SCANCODE_RETURN:
 					if (pertsonaia.bizirik)
 					{
@@ -183,11 +164,7 @@ void EbentuakKonprobatu(SDL_bool* Jokatzen, PANTAILAK* Pantaila, int* pAnimazioa
 				}
 				break;
 			}
-			if (strcmp(sekuentzia, "PONG") == 0)
-			{
-				*Pantaila = AUKERATUMODUA;
-				strcpy(sekuentzia, "");
-			}
+			
 		}
 		if (enter)
 		{
@@ -436,60 +413,6 @@ if (hitbox.behekoa.eskuin == GORRIA || hitbox.behekoa.ezker == GORRIA || hitbox.
 }
 }
 
-void PongKolisioa()
-{	//pelota y la primera pala
-
-	if ((easteregg.pilota.x <= easteregg.Player1.x + easteregg.Player1.w) && ((easteregg.pilota.y + easteregg.pilota.h - 8 >= easteregg.Player1.y&& easteregg.pilota.y + easteregg.pilota.h <= easteregg.Player1.y + easteregg.Player1.h)|| (easteregg.pilota.y + 8 <= easteregg.Player1.y + easteregg.Player1.h && easteregg.pilota.y >= easteregg.Player1.y)))
-	{
-		musica_Pong(PONG_PALA);
-		easteregg.abiadurax -= 1;
-		if (easteregg.abiaduray < 0)
-		{
-			easteregg.abiaduray -= 1;
-		}
-		else
-		{
-			easteregg.abiaduray += 1;
-		}
-		easteregg.abiadurax *= -1;
-		easteregg.pilota.x = easteregg.Player1.x + easteregg.Player1.w + 1;
-	}
-	//ganar
-	else if( easteregg.pilota.x <= easteregg.Player1.x + easteregg.Player1.w / 2)
-	{
-		easteregg.P2puntuazioa++;
-		printf("\n P1: %d	P2: %d", easteregg.P1puntuazioa, easteregg.P2puntuazioa);
-		BerrizJaurti();
-		musica_Pong(PONG_IRABAZI);
-
-	}
-	
-	//pelota y la segunda pala
-	if ((easteregg.pilota.x + easteregg.pilota.w >= easteregg.Player2.x) && ((easteregg.pilota.y + easteregg.pilota.h - 8 >= easteregg.Player2.y && easteregg.pilota.y + easteregg.pilota.h <= easteregg.Player2.y + easteregg.Player2.h) || (easteregg.pilota.y + 8 <= easteregg.Player2.y + easteregg.Player2.h && easteregg.pilota.y >= easteregg.Player2.y)))
-	{
-		musica_Pong(PONG_PALA);
-		easteregg.abiadurax += 1;
-		if (easteregg.abiaduray < 0)
-		{
-			easteregg.abiaduray -= 1;
-		}
-		else
-		{
-			easteregg.abiaduray += 1;
-		}
-		easteregg.abiadurax *= -1;
-		easteregg.pilota.x = easteregg.Player2.x - (1 + easteregg.pilota.w);
-	}
-	//ganar
-
-	else if (easteregg.pilota.x >= easteregg.Player2.x + easteregg.Player2.w/2)
-	{
-		easteregg.P1puntuazioa++;
-		printf("\n P1: %d	P2: %d", easteregg.P1puntuazioa, easteregg.P2puntuazioa);
-		BerrizJaurti();
-		musica_Pong(PONG_IRABAZI);
-	}
-}
 
 void KolisioakBoss(PANTAILAK* Pantaila, ZENTZUA begira, int* pAnimazioa, int* bAnimazioa, int BizirikDaudenEtsaiak[], int* BizirikKopurua, Uint32 *attackrate)
 {
@@ -510,7 +433,7 @@ void KolisioakBoss(PANTAILAK* Pantaila, ZENTZUA begira, int* pAnimazioa, int* bA
 				*pAnimazioa = 0;
 			}
 			pertsonaia.sprite = HIL;
-			break;//(añadido despues) si te toca una bala nio merece la pena que los demas se comprueben
+			break;//(aï¿½adido despues) si te toca una bala nio merece la pena que los demas se comprueben
 		}
 	}
 	if (pertsonaia.sprite == ERASO && pertsonaia.erasotzen && *pAnimazioa > 4 && (PertzonaiaYGoikoa + 29 >= BOSS.DestSprite.y && PertzonaiaYGoikoa + 29 <= BOSS.DestSprite.y + 149))

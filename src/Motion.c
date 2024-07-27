@@ -26,7 +26,7 @@ extern ETSAIA etsaia[ETSAI_KOPURUA + 1];
 extern TIROAK jaurtigai[30];
 
 
-extern PONG easteregg;
+
 extern ROL Ordenagailua;
 extern TCPsocket server, client;
 
@@ -219,100 +219,7 @@ void EtsaiaKokatu(int znbk_etsaia, int x, int y, int BizirikDaudenEtsaiak[], int
 	*BizirikKopurua += 1;
 }
 
-void PongExekutatu()
-{
-	int abiadura = 10;
-	switch (Ordenagailua)
-	{
-		case ZERBITZARI:
 
-			PongKolisioa();
-			if (w && easteregg.Player1.y > 0)
-			{
-				easteregg.Player1.y -= abiadura;
-			}
-			else if (s && easteregg.Player1.y < 720 - easteregg.Player1.h)
-			{
-				easteregg.Player1.y += abiadura;
-			}
-			//pareta
-			if (easteregg.pilota.y <= 0 || easteregg.pilota.y + 25 >= 720)
-			{
-				easteregg.abiaduray *= -1;
-				musica_Pong(PONG_PARETA);
-			}
-			easteregg.pilota.x += easteregg.abiadurax * cos(easteregg.angelua * M_PI / 180);
-			easteregg.pilota.y -= easteregg.abiaduray * sin(easteregg.angelua * M_PI / 180);
-
-			int DatuakHost[4] = { easteregg.Player1.x,easteregg.Player1.y,easteregg.pilota.x,easteregg.pilota.y };
-			void* DatuakHostbidali = DatuakHost;
-			SDLNet_TCP_Send(client, DatuakHostbidali, 100);
-
-			int DatuakClient[2];
-			void* DatuakClientbidali = DatuakClient;
-			SDLNet_TCP_Recv(client, DatuakClientbidali, 100);
-
-			easteregg.Player2.x = DatuakClient[0];
-			easteregg.Player2.y = DatuakClient[1];
-			break;
-		case BEZEROA:
-			PongKolisioa();
-
-			if (easteregg.pilota.y <= 0 || easteregg.pilota.y + 25 >= 720)
-			{
-					musica_Pong(PONG_PARETA);
-			}
-
-			if (w && easteregg.Player2.y > 0)
-			{
-				easteregg.Player2.y -= abiadura;
-			}
-			else if (s && easteregg.Player2.y < 720 - easteregg.Player2.h)
-			{
-				easteregg.Player2.y += abiadura;
-			}
-			int DatuakClient2[2] = { easteregg.Player2.x,easteregg.Player2.y};
-			
-			void* Datosbug = DatuakClient2;
-			SDLNet_TCP_Send(client, Datosbug, 100);
-
-			int DatuakHost2[4];
-			void* Datosmuybug = DatuakHost2;
-			SDLNet_TCP_Recv(client, Datosmuybug, 100);
-			easteregg.Player1.x = DatuakHost2[0];
-			easteregg.Player1.y = DatuakHost2[1];
-			easteregg.pilota.x = DatuakHost2[2];
-			easteregg.pilota.y = DatuakHost2[3];
-			break;
-		default:
-			PongKolisioa();
-			if (w && easteregg.Player1.y > 0)
-			{
-				easteregg.Player1.y -= abiadura;
-			}
-			else if (s && easteregg.Player1.y < 720 - easteregg.Player1.h)
-			{
-				easteregg.Player1.y += abiadura;
-			}
-			//pareta
-			if (easteregg.pilota.y <= 0 || easteregg.pilota.y + 25 >= 720)
-			{
-				easteregg.abiaduray *= -1;
-				musica_Pong(PONG_PARETA);
-			}
-			if (gora && easteregg.Player2.y > 0)
-			{
-				easteregg.Player2.y -= abiadura;
-			}
-			else if (behera && easteregg.Player2.y < 720 - easteregg.Player2.h)
-			{
-				easteregg.Player2.y += abiadura;
-			}
-			easteregg.pilota.x += easteregg.abiadurax * cos(easteregg.angelua * M_PI / 180);
-			easteregg.pilota.y -= easteregg.abiaduray * sin(easteregg.angelua * M_PI / 180);
-			break;
-	}
-}
 
 void PertsonaiaMugitu(int* pAnimazioa, ZENTZUA* begira, PANTAILAK* pantaila)
 {
@@ -466,7 +373,7 @@ void BossMugitu(int *bAnimazioa, int BizirikDaudenEtsaiak[], int *BizirikKopurua
 			*bAnimazioa = 0;
 		}
 	}
-	if (faseak == TRANSFORM) //si se esta trasformando se sube para arriba  //COMO ESPAÑA
+	if (faseak == TRANSFORM) //si se esta trasformando se sube para arriba  //COMO ESPAï¿½A
 	{
 		BOSS.DestSprite.y -= 9;
 	}

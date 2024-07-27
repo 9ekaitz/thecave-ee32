@@ -10,7 +10,7 @@
 PERTSONAIA pertsonaia;
 ETSAIA etsaia[ETSAI_KOPURUA + 1];		//+1 Bossarako
 
-PONG easteregg;
+
 
 extern IMGPERTSONAIA spriteak[7];
 
@@ -60,10 +60,7 @@ int LeihoaEtaRenderHasi()
 	Soinuak[TIROA_EFEKTUA] = Mix_LoadWAV(".\\media\\sound\\effect\\boss\\Tiroak.wav");
 	Soinuak[MusikaBOSS] = Mix_LoadWAV(".\\media\\sound\\boss\\MusikaBoss.wav");
 	Soinuak[BOOS_KOLPE_EFEKTUA] = Mix_LoadWAV(".\\media\\sound\\boss\\hit.wav");
-	//Pong
-	Soinuak[PONG_PALA] = Mix_LoadWAV(".\\media\\sound\\pong\\pala.wav");
-	Soinuak[PONG_PARETA] = Mix_LoadWAV(".\\media\\sound\\pong\\pareta.wav");
-	Soinuak[PONG_IRABAZI] = Mix_LoadWAV(".\\media\\sound\\pong\\puntua.wav");
+
 
 	return 0;
 }
@@ -147,7 +144,7 @@ void PertsonaiaHil()
 			jaurtigai[i].pantailan = SDL_FALSE;//apaga los disparos
 		}
 	}
-	if (kont == 3)//si lñe pegas tres veces al boss te mueres y sale la pantaila de ganar
+	if (kont == 3)//si lï¿½e pegas tres veces al boss te mueres y sale la pantaila de ganar
 	{
 		IrabaziGaldu(IRABAZI_EFEKTUA);
 		ImgKargatu(".\\media\\menu\\IrabaziDuzu.bmp", 845, 560, 208, 76);		//Zabalera, altuera, x, y
@@ -180,13 +177,3 @@ void RectEraikitzailea(SDL_Rect* dest, int x, int y, int h, int w)
 	dest->y = y;
 }
 
-void BerrizJaurti()//pong
-{
-	RectEraikitzailea(&easteregg.pilota, 628, 348, 25, 25);
-	do
-	{
-		easteregg.angelua = (rand() % 90) - 45;
-	} while (easteregg.angelua < 15 && easteregg.angelua > -15);
-	easteregg.abiadurax = 7;
-	easteregg.abiaduray = 7;
-}

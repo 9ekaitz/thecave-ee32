@@ -12,8 +12,8 @@ int main(int argc, char* argv[]) {
 	
 	PANTAILAK Pantaila;		//Zein pantailan dagoen jokalaria
 	SDL_bool Jokatzen = SDL_FALSE;
-	void* pixels = NULL; //La longitud de una fila de píxeles en bytes (solo lectura)
-	int pitch; //el puntero a los datos de los pìxel actual
+	void* pixels = NULL; //La longitud de una fila de pï¿½xeles en bytes (solo lectura)
+	int pitch; //el puntero a los datos de los pï¿½xel actual
 	Uint8 bpp; //bytes por pixel
 	Uint32 refreshrate = 0; //erlojua
 	Uint32 moverate = 0;// erlojua
@@ -262,7 +262,7 @@ int main(int argc, char* argv[]) {
 			EbentuakKonprobatu(&Jokatzen, &Pantaila, &pAnimazioa, &begira, BizirikDaudenEtsaiak, BizirikKopurua);
 			if (SDL_TICKS_PASSED(SDL_GetTicks(), moverate))
 			{
-				PongExekutatu();
+			
 				moverate = SDL_GetTicks() + 20;
 			}
 			if (SDL_TICKS_PASSED(SDL_GetTicks(), refreshrate))

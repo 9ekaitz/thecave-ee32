@@ -17,7 +17,7 @@ void MusikaJarri(char Fitxategia[]);
 void MusikaJOKUA();
 void Efektuak(int zenbakia);
 
-void musica_Pong(int numerodesonido);
+
 
 void IrabaziGaldu(int zenbakia);
 
